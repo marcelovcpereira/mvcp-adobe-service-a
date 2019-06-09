@@ -1,0 +1,18 @@
+marceloServiceA:
+  appName: marcelo-adobe-service-a3
+  image:
+    repository: marcelovcpereira/adobe-test:servicea
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      cpu: "1500m"
+      memory: "4096Mi"
+    requests:
+      cpu: "1500m"
+      memory: "4096Mi"
+
+#########################
+# Environment Variables #
+#########################
+  configMap:
+    SERVICE_A_PORT: 9002
