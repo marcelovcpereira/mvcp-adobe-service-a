@@ -1,0 +1,14 @@
+# IntelliJ project files
+.idea/*
+*.iml
+out
+gen
+
+*.ipr
+*.iws
+*.jar
+*/target/*
+target
+*/classes/*
+classes
+classes/*

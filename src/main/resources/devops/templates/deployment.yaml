@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.marceloServiceA.appName }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.marceloServiceA.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.marceloServiceA.appName }}
+    spec:
+      containers:
+        - image: {{ .Values.marceloServiceA.image.repository }}
+          name: {{ .Values.marceloServiceA.appName }}
+          env:
+            {{- range $key, $value := .Values.marceloServiceA.configMap }}
+            - name: {{ $key }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ $.Values.marceloServiceA.appName }}
+                  key: {{ $key }}
+            {{- end }}
+          ports:
+            - containerPort: {{ .Values.marceloServiceA.configMap.SERVICE_A_PORT }}
+              name: default
